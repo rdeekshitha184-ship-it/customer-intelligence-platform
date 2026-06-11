@@ -283,8 +283,14 @@ import joblib
 import plotly.graph_objects as go
 
 from collections import Counter
+import nltk
 from nltk.corpus import stopwords
 
+try:
+    stop_words = set(stopwords.words("english"))
+except:
+    nltk.download("stopwords")
+    stop_words = set(stopwords.words("english"))
 # =====================================
 # PAGE CONFIG
 # =====================================
@@ -302,7 +308,7 @@ st.set_page_config(
 model = joblib.load("models/logistic_model.pkl")
 vectorizer = joblib.load("models/tfidf_vectorizer.pkl")
 
-stop_words = set(stopwords.words("english"))
+
 
 # =====================================
 # TEXT CLEANING
